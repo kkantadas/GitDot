@@ -261,7 +261,7 @@
 ;;      (run-commands "exec networkmanager_dmenu -sf yellow -sb '#7B5656' -nb '#391D1D' -fn xft:monofur:size=9:bold"))
 
 (defcommand stumpish-terminal () ()
-  (run-commands  "exec urxvt -e ~/bin/stumpish" ))
+  (run-commands  "exec urxvt -e ~/.stumpwm.d/stumpish" ))
 
 ;;(defcommand hsplit-save () ()
 ;;  (run-commands "dump-desktop-to-file split-dump" "hsplit" ))
@@ -330,7 +330,6 @@
                      "| awk '{print $2}'") t)))
 
 
-
 (setf stumpwm:*screen-mode-line-format*
       (list "^2%d^]    ^1[|>^] %g    ^1[|>^] %W "
             " ^> "                      ; remaining elements become left-aligned
@@ -339,9 +338,6 @@
              "  Net:[" '(:eval (get-net))
             "]  WiFi:[" '(:eval (get-signal-strength))
             "]  BAT:["  '(:eval (get-battery-status)) "]"))
-
-
-
 
 
 (defcommand rxvt () ()
@@ -399,8 +395,7 @@ run-or-raise with group search t."
   "Run mutt."
   (run-or-raise "urxvt -name Mutt -e mutt" '(:instance "Mutt")))
 
-
-;;??
+;;
 ;;(setf *grab-pointer-foreground* (xlib:make-color :green 0.1 :red 0.25 :blue 0.5)) ;;; blue pointer
 (setf *grab-pointer-foreground* (xlib:make-color :green 0.1 :red 0.25 :blue 0.5))
 (setf *grab-pointer-background* (lookup-color (current-screen) "blue"))
@@ -410,13 +405,11 @@ run-or-raise with group search t."
 ;;(setf *grab-pointer-font* "fixed")
 
 
-
 (amixer::defvolcontrol amixer-Master-5- "Master" "5%-")
 (amixer::defvolcontrol amixer-Master-5+ "Master" "5%+")
 (define-key *top-map* (kbd "XF86AudioLowerVolume") "amixer-Master-5-")
 (define-key *top-map* (kbd "XF86AudioRaiseVolume") "amixer-Master-5+")
 ;;(define-key *top-map* (kbd "XF86AudioMute") "amixer-Master-toggle")
-
 
 
 (defcommand raise-brightness () ()
@@ -452,13 +445,11 @@ hell-command "light -A 5"))
 (make-veda-jump "Vedatxt" "cd Vedatxt/ && urxvt --hold -e grep --color=auto -irn ")
 
 
-
 (defcommand try () ()
         (let  ((*message-window-gravity* :center)
                (*message-window-padding* 50)
                 (*timeout-wait 10))
         (message "~a" (run-shell-command "ls -a > a && cat a && rm a" t))))
-
 
 
 (clear-window-placement-rules)
