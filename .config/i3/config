@@ -1,5 +1,4 @@
 # i3 config file (v4)ATOM): protocols  WM_DELETE_WINDOW, _NET_WM_PING, _NET_WM_SYNC_REQUEST
-#
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 #
 # This config file uses keycodes (bindsym) and was written for the QWERTY
