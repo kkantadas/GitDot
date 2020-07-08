@@ -1,0 +1,12 @@
+#S(GDUMP
+   :NUMBER 1
+   :NAME "Web"
+   :TREE (#S(FDUMP
+             :NUMBER 0
+             :X 0
+             :Y 0
+             :WIDTH 1920
+             :HEIGHT 1080
+             :WINDOWS (20971542 18874378 31457290)
+             :CURRENT 20971542))
+   :CURRENT 0)
