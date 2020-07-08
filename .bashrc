@@ -132,7 +132,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias nm-connection-editor='ratpoison -c "frestore `tail -n 1 .config/ratframe/ratframe2`" ; exec nm-connection-editor'
     alias weather='curl wttr.in/Kolkata'
     alias urxvt-white='urxvt -bg grey90 -fg grey25 -fn "xft:monofur:bold:italic:pixelsize=16"  & sleep 0.3 && transset-df -a 0.9'
-    alias git-kkbare='/usr/bin/git --git-dir=$HOME/.gitBareDot/ --work-tree=$HOME' 
+    alias ..git='/usr/bin/git --git-dir=$HOME/.gitBareDot/ --work-tree=$HOME' 
     #alias feh="feh --action1 \;\"image-metadata.sh edit-comment %f\" --action2 \;\"image-metadata.sh edit-tags %f\" --info \"image-metadata.sh show %f\" "
     #alias feh='feh --image-bg black --keep-zoom-vp --scale-down --menu-bg /usr/share/feh/images/menubg_brushed.png'
     #alias feh='feh -F'
