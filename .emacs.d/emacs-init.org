@@ -219,7 +219,7 @@ Also check [[https://github.com/abo-abo/hydra][the project's source]] for more i
 
 ** completion
 
-#+BEGIN_SRC emacs-lisp
+;;-->#+BEGIN_SRC emacs-lisp
  (use-package auto-complete
 :ensure t
 :init
