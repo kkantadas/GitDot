@@ -89,9 +89,9 @@ Rxvt.prel-ext-common : default,clipboard,url-selection,keyboard-selection
 !! fonts
 ! run "fc-list" for a list of available fonts
 !URxvt*font: xft:monofur:bold:italic:pixelsize=16
-!URxvt*font: xft:monaco:italic:bold:pixelsize=12
+URxvt*font: xft:monaco:pixelsize=14
 !URxvt*font: xft:consolas:italic:bold:pixelsize=15 !! -1 letterspace
-URxvt*font: xft:comic shanns:pixelsize=16
+!!!URxvt*font: xft:comic shanns:pixelsize=16
 
 URxvt*letterSpace: -.5 
 !-monfur 16-! URxvt*letterSpace: -2

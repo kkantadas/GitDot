@@ -82,9 +82,9 @@ definekey super-x v   exec ./bin/conky.sh & ratpoison -c "set padding 0 15 0 0" 
 definekey super-x t   exec ratpoison -c "setenv fs1 `ratpoison -c 'fdump'`"
 
 #restore the frame layout in slot #1
-definekey super-x p exec ratpoison -c "frestore `tail -n 1 .config/ratframe/fsPing`" & urxvt -e ping -c4 google.com && ratpoison -c undo
+#definekey super-x p exec ratpoison -c "frestore `tail -n 1 .config/ratframe/fsPing`" & urxvt -e ping -c4 google.com && ratpoison -c undo
 #definekey super-x p exec ratpoison -c "vsplit 12/13" -c focusdown &  urxvt -e ping -c4 google.com  && ratpoison -c undo
-definekey super-x P exec ratpoison -c "echo `ping -c2 google.com | grep data`"
+definekey super-x p exec ratpoison -c "echo `ping -c2 google.com | grep data`"
 definekey super-x C exec ratpoison -c "echo Connecting Ethernet `con` "
 definekey super-x r exec ratpoison -c "frestore `ratpoison -c 'getenv fs1'`"
 definekey super-x s exec ratpoison -c "vsplit 5/6" -c focusdown
