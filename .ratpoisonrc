@@ -43,11 +43,11 @@ set wingravity n#ne
 
 ##KeyBindings
 newkmap   super-x
-definekey super-x d     exec 'exec' # exec dmenu_run > /dev/null &
+#definekey super-x d     exec 'exec' # exec dmenu_run > /dev/null &
 #definekey super-x d     exec rofi -show drun -theme dmenu
 #definekey super-x d     exec rofi -theme flat-orange -font "hack 11" -show drun
 definekey super-x l      exec ./bin/lapower.sh
-definekey super-x j      exec urxvt -e alsamixer & sleep .4s && transset-df -a 0.7
+definekey super-x j      exec urxvt -e alsamixer 
 definekey super-x space  exec ./bin/split.sh
 definekey super-x R      exec ratpoison -c restart
 definekey super-x D      exec dmenumount
@@ -74,22 +74,25 @@ definekey super-x F1   exec ratpoison -c "hsplit 21/29" -c focusleft -c "hsplit 
 definekey super-x x    exec urxvt -e ranger &
 definekey super-x w    exec chromium
 definekey super-x m    exec scrot -e 'convert $f label:"%x %X" -append $f'
-exec sh ~/.fehbg &
+# exec sh ~/.fehbg &
 
 #definekey super-x v  exec ./bin/conky.sh & sleep 9s && killall conky
-definekey super-x v   exec ./bin/conky.sh & ratpoison -c "set padding 0 15 0 0" & sleep 25s && killall conky ; ratpoison -c "set padding 0 0 0 0" &
+#definekey super-x v   exec ./bin/conky.sh & ratpoison -c "set padding 0 15 0 0" & sleep 25s && killall conky ; ratpoison -c "set padding 0 0 0 0" &
 
-definekey super-x t   exec ratpoison -c "setenv fs1 `ratpoison -c 'fdump'`"
+#definekey super-x t   exec ratpoison -c "setenv fs1 `ratpoison -c 'fdump'`"
 
 #restore the frame layout in slot #1
-#definekey super-x p exec ratpoison -c "frestore `tail -n 1 .config/ratframe/fsPing`" & urxvt -e ping -c4 google.com && ratpoison -c undo
+definekey super-x p exec ratpoison -c "frestore `tail -n 1 .config/ratframe/fsPing`" & urxvt -e ping -c4 google.com && ratpoison -c undo
 #definekey super-x p exec ratpoison -c "vsplit 12/13" -c focusdown &  urxvt -e ping -c4 google.com  && ratpoison -c undo
-definekey super-x p exec ratpoison -c "echo `ping -c2 google.com | grep data`"
-definekey super-x C exec ratpoison -c "echo Connecting Ethernet `con` "
+#definekey super-x p exec ratpoison -c "echo `ping -c2 google.com | grep data`"
+#definekey super-x C exec ratpoison -c "echo Connecting Ethernet `con` "
 definekey super-x r exec ratpoison -c "frestore `ratpoison -c 'getenv fs1'`"
 definekey super-x s exec ratpoison -c "vsplit 5/6" -c focusdown
 definekey super-x f exec xterm -e w3m -B
 
+definekey super-x l exec ratpoison -c fdump > dump
+
+definekey super-x f exec xterm -e w3m -B
 definekey super-x h exec urxvt -e htop &
 
 definekey super-x Down exec xrandr -o normal &
@@ -97,10 +100,10 @@ definekey super-x Left exec xrandr -o right &
 definekey super-x Right exec xrandr -o left &
 
 #definekey super-x a exec ratpoison -d :0.0 -c "echo Batt `acpi -b|cut -c-11-25` `acpi -t` `date`"
-definekey super-x a exec ratpoison -d :0.0 -c "echo `~/bin/ping-check.sh` Net: `cat /sys/class/net/enp2s0f1/operstate` @  Wifi: `cat /sys/class/net/wlan0/operstate /sys/class/net/wlp3s0/operstate` `iwconfig wlan0 |grep ESSID|cut -c30-50` @ Bat:`acpi -b |cut -c11-27` @  Mem: `free -h | grep Mem | cut -c27-30` @ Themp:`acpi -t|cut -c15-19`°C @ `date|cut -c11-16` `date|cut -c1-10`"
+definekey super-x a exec ratpoison -d :0.0 -c "echo `~/bin/ping-check.sh` Net: `cat /sys/class/net/enp2s0f1/operstate` @  Wifi: `cat /sys/class/net/wlan0/operstate /sys/class/net/wlp3s0/operstate` `iw wlan0 info |grep ssid|cut -c6-50` @ Bat:`acpi -b |cut -c11-27` @  Mem: `free -h | grep Mem | cut -c27-30` @ Themp:`acpi -t|cut -c15-19`°C @ `date -R|cut -c18-22` `date|cut -c1-10`"
 #: `connmanctl state|grep State|cut -c11-19`
 
-definekey super-x G exec urxvt -e less Vedatxt/Bhagavat-Gita/Bhagavad-Gita.txt &
+definekey super-x G exec urxvt -e vim Vedatxt/Bhagavat-Gita/Bhagavad-Gita.txt &
 definekey super-x K exec urxvt -e less Vedatxt/A.C.Bhaktivadanta\ Swami\ Prabhupada/Krsna_Book.txt &
 definekey super-x B exec urxvt -e ranger Vedatxt/Srimad\ Bhagavatam/ &
 definekey super-x V exec urxvt -e ranger Vedatxt &
@@ -109,6 +112,8 @@ definekey super-x V exec urxvt -e ranger Vedatxt &
 #bind h exec amixer -q set Master 10-
 #bind C exec urxvt -bg grey -fg black & sleep 0.3 && transset-df -a 0.7
 bind s exec ratpoison -c  vsplit -c focusdown
+bind parenright exec ratpoison -c "frestore `tail -n 1 .config/ratframe/dump`" & sleep 0.5s && sudo systemctl suspend  
+
 bind S exec ratpoison -c  hsplit -c focusright
 bind C exec  urxvt -bg '#F8C888' -fg '#392613' -fn "xft:comic shanns:pixelsize=16"
 bind h exec amixer -q set Speaker unmute # 100%

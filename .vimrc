@@ -23,11 +23,19 @@ set wildmenu
 set fillchars=vert:.
 set t_Co=16
 set linebreak
+set display=lastline
 "set spell spelllang=en_us,de_de
 "set formatoptions+=a
 
-call plug#begin('~/.vim/plugged')
-Plug 'valloric/youcompleteme'
+imap <silent> <Down> <C-o>gj
+imap <silent> <Up> <C-o>gk
+nmap <silent> <Down> gj
+nmap <silent> <Up> gk
+
+
+call plug#begin('~/.vim/plugged') 
+Plug 'ervandew/supertab'
+"Plug 'valloric/youcompleteme'
 Plug 'sedm0784/vim-you-autocorrect'
 Plug 'tpope/vim-fugitive'
 Plug 'jceb/vim-orgmode'
