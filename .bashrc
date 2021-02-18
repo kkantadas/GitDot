@@ -29,37 +29,23 @@ export PS2="> "
 #
 export PS2="> "
 
-export PATH=~/bin:~/bin/bin_bspwm/:$HOME/.config/bspwm:$PATH
+export PATH=~/bin:$PATH
+
+#:~/binbin_bspwm/:$HOME/.config/bspwm:$PATH
+
+#PATH=$PATH$( find $HOME/bin/bin_bspwm/ -type d -printf ":%p" )
 #export TERM=xterm
 export TERM=xterm-256color
 
+#export PAGER=/usr/bin/vimpager
+#alias less=$PAGER
+#
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
 shopt -s histappend
-
-# XDG - set defaults as they may not be set
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CACHE_HOME="$HOME/.cache"
-#export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
-export LESSHISTFILE="$XDG_CACHE_HOME/less/lesshst"
-export FONTCONFIG_PATH="$XDG_DATA_HOME/fonts"
-export MPLAYER_HOME="$XDG_CONFIG_HOME/mplayer"
-export ELINKS_CONFDIR="$XDG_CONFIG_HOME/elinks"
-export STARDICT_DATA_DIR="$XDG_DATA_HOME/stardict"
-export GTK2_RC_FILES=~/.config/gtk-2.0/gtkrc-2.0
-
-if [ ! -w ${XDG_RUNTIME_DIR:="/run/user/$UID"} ]; then
-    echo "\$XDG_RUNTIME_DIR ($XDG_RUNTIME_DIR) not writable. Unsetting." >&2
-    unset XDG_RUNTIME_DIR
-else
-    export XDG_RUNTIME_DIR
-fi
-
-
 
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
@@ -108,7 +94,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias dmenu='dmenu_run -fn monospace-7-'
 
     alias dir='dir --color=auto'
-    alias ls='ls --color=auto'
     alias feh='feh --image-bg black --scale-down'
     alias urxvt2='urxvt & sleep .3s && transset-df -a 0.93'
     alias ls='ls --color=auto --group-directories-first'
@@ -124,7 +109,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias poweroff='sudo poweroff'
     alias du-fs='du -h --max-depth=0 $1' #fs=foldersize -requires ONE input
     alias mp='mplayer -vf crop=1010:99'
-    alias CachRem='rm -rfv ~/{.cache/{/chromium/Default/,common-lisp/,gstreamer-1.0/,vimb/WebKitCache},.local/share/webkitgtk,.pki/}'
+    alias CachRem='rm -rfv ~/{.cache/{/chromium/Default/,common-lisp/,gstreamer-1.0/,vimb/WebKitCache},.cache/yay/,.local/share/webkitgtk,.pki/}'
     alias shred='shred -fuv'
     alias chroma='chromium'
     alias mplayer='mplayer -fs'
@@ -147,6 +132,7 @@ fi
 
 # some more ls aliases
     alias ll='ls -lh'
+    alias lla='ls -lah'
     alias la='ls -A'
     alias l='ls -CF'
 
@@ -223,7 +209,27 @@ list () {
     fi
 
 }
+
 # Enter directory and list contents
+wda () {
+    # if file doesn't exist, create it
+    if [[ ! -f $HOME/.wda ]]; then
+        touch "$HOME/.wda"
+    fi
+
+    if ! (($#)); then
+        # no arguments, print file
+        cat "$HOME/.wda"
+    elif [[ "$1" == "-c" ]]; then
+        # clear file
+        > "$HOME/.wda"
+    else
+        # add all arguments to file
+        printf "%s\n" "$*" >> "$HOME/.wda"
+    fi
+
+}
+
 cd() {
         if [ -n "$1" ]; then
                 builtin cd "$@" && ls -pvA --color=auto --group-directories-first
